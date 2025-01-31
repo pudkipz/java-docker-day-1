@@ -37,4 +37,11 @@ public class CourseController {
         courseToUpdate.setStartDate(course.getStartDate());
         return courseRepository.save(courseToUpdate);
     }
+
+    @DeleteMapping("/{id}")
+    public Course delete(@PathVariable int id) {
+        Course c = courseRepository.findById(id).orElseThrow();
+        courseRepository.deleteById(id);
+        return c;
+    }
 }
